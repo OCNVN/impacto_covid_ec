@@ -1,0 +1,10 @@
+#!/bin/bash
+
+python -m migrations.defunciones_mensual_migration_data
+python -m migrations.defunciones_semanal_migration_data
+python -m migrations.muertes_covid_mensual_migration_data
+python -m migrations.muertes_covid_semanal_migration_data
+python -m migrations.positivas_mensual_migration_data
+python -m migrations.positivas_semanal_migration_data
+python -m migrations.vacunometro_mensual_migration_data
+python -m migrations.vacunometro_semanal_migration_data
