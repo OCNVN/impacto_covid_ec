@@ -10,8 +10,11 @@ def get_muertes_covid_mensual():
             with engine.connect() as connection:
                 df = pd.read_sql_query(
                     """
-                    SELECT id, poblacion, provincia, total, anio, mes, nuevas
+                    SELECT id, poblacion, provincia, total, anio, mes, nuevas,
+                        (TO_DATE(anio || '-' || mes , 'YYYY-MM')::date) as fecha,
+                        EXTRACT(EPOCH FROM(TO_DATE(anio || '-' || mes , 'YYYY-MM')::date)) AS timestamp
                     FROM muertes_covid_mensual
+                    ORDER BY fecha
                     """,
                     connection
                 )

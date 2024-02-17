@@ -10,8 +10,11 @@ def get_vacunometro_mensual():
             with engine.connect() as connection:
                 df = pd.read_sql_query(
                     """
-                    SELECT id, poblacion, provincia, anio, mes, dosis_refuerzo, dosis_total, dosis_unica, primera_dosis, region, zona
+                    SELECT id, poblacion, provincia, anio, mes, dosis_refuerzo, dosis_total, dosis_unica, primera_dosis, region, zona,
+                        (TO_DATE(anio || '-' || mes , 'YYYY-MM')::date) as fecha,
+                        EXTRACT(EPOCH FROM(TO_DATE(anio || '-' || mes , 'YYYY-MM')::date)) AS timestamp
                     FROM vacunometro_mensual
+                    ORDER BY fecha
                     """,
                     connection
                 )

@@ -10,8 +10,11 @@ def get_defunciones_mensual():
             with engine.connect() as connection:
                 df = pd.read_sql_query(
                     """
-                    SELECT id, acumuladas, poblacion, provincia, total, mes, anio 
+                    SELECT id, acumuladas, poblacion, provincia, total, mes, anio, 
+                        (TO_DATE(anio || '-' || mes , 'YYYY-MM')::date) as fecha,
+                        EXTRACT(EPOCH FROM(TO_DATE(anio || '-' || mes , 'YYYY-MM')::date)) AS timestamp
                     FROM defunciones_mensual
+                    ORDER BY fecha
                     """,
                     connection
                 )

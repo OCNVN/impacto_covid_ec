@@ -36,7 +36,7 @@ class Provinces(Enum):
 class Metrics(Enum):
     ALL_CAUSES_DEATHS = 'Muertes por todas las causas'
     COVID_DEATHS = 'Muertes causadas por COVID-19'
-    COVID_TEST_POSITIVE = 'Casos positivos confirmados de COVID-19'
+    COVID_POSITIVE_CASES = 'Casos positivos confirmados de COVID-19'
     VACCINES_DOSSES = 'Dosís de vacunas aplicadas'
 
 class MetricsAndPeriodicity(Enum):
